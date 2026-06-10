@@ -26,9 +26,9 @@
   --color-horizon-cream: #fef3c7;
 
   /* Typography */
-  --font-display-jp: "Shippori Mincho", serif;
-  --font-display-en: "Cormorant Garamond", serif;
-  --font-body: "Noto Sans JP", sans-serif;
+  --font-display-jp: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-display-en: "Cormorant Garamond", "Garamond", "Georgia", serif;
+  --font-body: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 
   /* Custom Animations */
   --animate-float: float 6s ease-in-out infinite;
@@ -327,6 +327,12 @@ body {
   outline-offset: 2px;
 }
 
+/* Active press feedback — tactile confirmation on click/tap */
+button:active:not([disabled]),
+a:active:not([disabled]) {
+  transform: scale(0.97);
+}
+
 /* Link underline animation */
 .link-underline {
   position: relative;
@@ -363,4 +369,16 @@ body {
   background: rgba(255, 255, 255, 0.3);
   animation: ripple 0.6s ease-out forwards;
   pointer-events: none;
+}
+
+/* ── Reduced Motion ────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

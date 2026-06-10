@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
+import { useRoute } from "vue-router";
 import { getAssetUrl } from "@/utils/assets";
+import { HEADER_SCROLL_THRESHOLD, HEADER_HIDE_THRESHOLD } from "@/utils/constants";
+
+const route = useRoute();
 
 interface NavItem {
   name: string;
@@ -23,9 +27,9 @@ const isHeaderVisible = ref(true);
 function handleScroll(): void {
   const currentScrollY = window.scrollY;
 
-  isScrolled.value = currentScrollY > 50;
+  isScrolled.value = currentScrollY > HEADER_SCROLL_THRESHOLD;
 
-  if (currentScrollY > lastScrollY.value && currentScrollY > 100) {
+  if (currentScrollY > lastScrollY.value && currentScrollY > HEADER_HIDE_THRESHOLD) {
     isHeaderVisible.value = false;
   } else {
     isHeaderVisible.value = true;
@@ -85,6 +89,7 @@ onUnmounted(() => {
           :key="item.href"
           :to="item.href"
           class="nav-link link-underline"
+          :aria-current="route.path === item.href ? 'page' : undefined"
         >
           {{ item.name }}
         </router-link>
@@ -94,7 +99,7 @@ onUnmounted(() => {
       <button
         class="mobile-menu-btn"
         :aria-expanded="isMobileMenuOpen"
-        aria-label="開啟選單"
+        :aria-label="isMobileMenuOpen ? '關閉選單' : '開啟選單'"
         @click="toggleMobileMenu"
       >
         <span class="hamburger" :class="{ 'is-active': isMobileMenuOpen }">

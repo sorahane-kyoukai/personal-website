@@ -1,33 +1,17 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { computed } from "vue";
+import { useScrollProgress } from "@/composables/useScrollProgress";
+import { READING_PROGRESS_VISIBILITY_THRESHOLD } from "@/utils/constants";
 
-const progress = ref(0);
-const isVisible = ref(false);
+const { progress: rawProgress, scrollY } = useScrollProgress();
 
-function updateProgress(): void {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-  if (docHeight > 0) {
-    progress.value = Math.min((scrollTop / docHeight) * 100, 100);
-  }
-
-  isVisible.value = scrollTop > 300;
-}
-
-onMounted(() => {
-  window.addEventListener("scroll", updateProgress, { passive: true });
-  updateProgress();
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", updateProgress);
-});
+const progressPercent = computed(() => (rawProgress.value ?? 0) * 100);
+const isVisible = computed(() => (scrollY.value ?? 0) > READING_PROGRESS_VISIBILITY_THRESHOLD);
 </script>
 
 <template>
   <div class="reading-progress" :class="{ 'progress-visible': isVisible }">
-    <div class="progress-bar" :style="{ width: `${progress}%` }">
+    <div class="progress-bar" :style="{ width: `${progressPercent}%` }">
       <div class="progress-glow"></div>
     </div>
     <div class="progress-track"></div>

@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import { getPostBySlug, getRelatedPosts } from "@/data/blog-posts";
 import ReadingProgress from "@/components/blog/ReadingProgress.vue";
 import BlogPostContent from "@/components/blog/BlogPostContent.vue";
+import { categoryLabelMap } from "@/data/categories";
 
 const route = useRoute();
 const router = useRouter();
@@ -13,12 +14,6 @@ const post = computed(() => getPostBySlug(slug.value));
 const relatedPosts = computed(() =>
   post.value ? getRelatedPosts(post.value.slug, 3) : [],
 );
-
-const categoryLabels: Record<string, string> = {
-  tech: "技術分享",
-  essay: "隨筆筆記",
-  community: "社群經營",
-};
 
 function copyCurrentUrl(): void {
   navigator.clipboard.writeText(window.location.href).catch(() => {
@@ -36,7 +31,7 @@ if (!post.value) {
 </script>
 
 <template>
-  <main v-if="post" class="blog-post-page">
+  <main v-if="post" id="main-content" class="blog-post-page">
     <ReadingProgress />
 
     <article class="post-article">
@@ -56,7 +51,7 @@ if (!post.value) {
           <!-- Category -->
           <div class="post-category">
             <span class="category-dot"></span>
-            <span>{{ categoryLabels[post.category] ?? post.category }}</span>
+            <span>{{ categoryLabelMap[post.category] ?? post.category }}</span>
           </div>
 
           <!-- Title -->
@@ -128,7 +123,7 @@ if (!post.value) {
           >
             <div class="related-category">
               <span class="related-dot"></span>
-              {{ categoryLabels[related.category] ?? related.category }}
+              {{ categoryLabelMap[related.category] ?? related.category }}
             </div>
             <h3 class="related-post-title">{{ related.title }}</h3>
             <p class="related-excerpt">{{ related.excerpt }}</p>

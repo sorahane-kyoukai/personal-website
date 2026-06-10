@@ -170,6 +170,8 @@ function handleMouseLeave(): void {
   justify-content: center;
   padding: 80px 24px;
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
 }
 
 /* Celestial System Container */

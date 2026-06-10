@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { ContentBlock } from "@/types/blog";
+import type { ContentBlock, ContentBlockType } from "@/types/blog";
 import { ref } from "vue";
+import { COPY_FEEDBACK_DURATION_MS } from "@/utils/constants";
 
 interface Props {
   blocks: ContentBlock[];
@@ -10,12 +11,43 @@ defineProps<Props>();
 
 const copiedBlock = ref<number | null>(null);
 
+/** Maps callout variant to its display metadata. */
+const CALLOUT_META: Record<
+  string,
+  { icon: string; label: string }
+> = {
+  warning: { icon: "⚠", label: "注意" },
+  tip: { icon: "✦", label: "提示" },
+  quote: { icon: "❝", label: "引言" },
+  info: { icon: "ℹ", label: "資訊" },
+};
+
+/** Resolve callout variant metadata with safe fallback. */
+const calloutMeta = (variant?: string) =>
+  (CALLOUT_META[variant ?? "info"])!;
+
+/**
+ * Block type → CSS class mapping for the outermost element.
+ * New block types can be added here without touching the template structure.
+ */
+const BLOCK_CLASS: Record<ContentBlockType, string> = {
+  heading: "content-heading",
+  subheading: "content-subheading",
+  paragraph: "content-paragraph",
+  quote: "content-quote",
+  code: "content-code-block",
+  image: "content-image",
+  list: "content-list",
+  callout: "content-callout",
+  divider: "content-divider",
+};
+
 function copyCode(text: string, index: number): void {
   navigator.clipboard.writeText(text).then(() => {
     copiedBlock.value = index;
     setTimeout(() => {
       copiedBlock.value = null;
-    }, 2000);
+    }, COPY_FEEDBACK_DURATION_MS);
   });
 }
 </script>
@@ -24,28 +56,28 @@ function copyCode(text: string, index: number): void {
   <div class="post-content">
     <template v-for="(block, index) in blocks" :key="index">
       <!-- Heading -->
-      <h2 v-if="block.type === 'heading'" class="content-heading">
+      <h2 v-if="block.type === 'heading'" :class="BLOCK_CLASS.heading">
         {{ block.text }}
       </h2>
 
       <!-- Subheading -->
-      <h3 v-else-if="block.type === 'subheading'" class="content-subheading">
+      <h3 v-else-if="block.type === 'subheading'" :class="BLOCK_CLASS.subheading">
         {{ block.text }}
       </h3>
 
       <!-- Paragraph -->
-      <p v-else-if="block.type === 'paragraph'" class="content-paragraph">
+      <p v-else-if="block.type === 'paragraph'" :class="BLOCK_CLASS.paragraph">
         {{ block.text }}
       </p>
 
       <!-- Quote -->
-      <blockquote v-else-if="block.type === 'quote'" class="content-quote">
+      <blockquote v-else-if="block.type === 'quote'" :class="BLOCK_CLASS.quote">
         <div class="quote-line"></div>
         <p>{{ block.text }}</p>
       </blockquote>
 
       <!-- Code Block -->
-      <div v-else-if="block.type === 'code'" class="content-code-block">
+      <div v-else-if="block.type === 'code'" :class="BLOCK_CLASS.code">
         <div class="code-header">
           <span v-if="block.language" class="code-lang">{{
             block.language
@@ -65,13 +97,19 @@ function copyCode(text: string, index: number): void {
       </div>
 
       <!-- Image -->
-      <figure v-else-if="block.type === 'image'" class="content-image">
-        <img :src="block.src" :alt="block.alt ?? ''" loading="lazy" />
+      <figure v-else-if="block.type === 'image'" :class="BLOCK_CLASS.image">
+        <img
+          :src="block.src"
+          :alt="block.alt ?? ''"
+          loading="lazy"
+          width="720"
+          height="auto"
+        />
         <figcaption v-if="block.caption">{{ block.caption }}</figcaption>
       </figure>
 
       <!-- List -->
-      <ul v-else-if="block.type === 'list'" class="content-list">
+      <ul v-else-if="block.type === 'list'" :class="BLOCK_CLASS.list">
         <li v-for="(item, i) in block.items" :key="i">
           <span class="list-marker">·</span>
           <span>{{ item }}</span>
@@ -81,33 +119,17 @@ function copyCode(text: string, index: number): void {
       <!-- Callout -->
       <aside
         v-else-if="block.type === 'callout'"
-        class="content-callout"
-        :class="`callout-${block.variant ?? 'info'}`"
+        :class="[BLOCK_CLASS.callout, `callout-${block.variant ?? 'info'}`]"
       >
         <div class="callout-header">
-          <span class="callout-icon">
-            <template v-if="block.variant === 'warning'">⚠</template>
-            <template v-else-if="block.variant === 'tip'">✦</template>
-            <template v-else-if="block.variant === 'quote'">❝</template>
-            <template v-else>ℹ</template>
-          </span>
-          <span class="callout-label">
-            {{
-              block.variant === "warning"
-                ? "注意"
-                : block.variant === "tip"
-                  ? "提示"
-                  : block.variant === "quote"
-                    ? "引言"
-                    : "資訊"
-            }}
-          </span>
+          <span class="callout-icon">{{ calloutMeta(block.variant).icon }}</span>
+          <span class="callout-label">{{ calloutMeta(block.variant).label }}</span>
         </div>
-        <p class="callout-text">{{ block.text }}</p>
+        <p class="callout-text">{{ block.text ?? '' }}</p>
       </aside>
 
       <!-- Divider -->
-      <hr v-else-if="block.type === 'divider'" class="content-divider" />
+      <hr v-else-if="block.type === 'divider'" :class="BLOCK_CLASS.divider" />
     </template>
   </div>
 </template>
@@ -119,7 +141,8 @@ function copyCode(text: string, index: number): void {
   line-height: 1.9;
 }
 
-/* Typography Scale */
+/* ── Typography Scale ──────────────────────────────────────────── */
+
 .content-heading {
   font-family: var(--font-display-jp);
   font-size: 1.6rem;
@@ -141,6 +164,10 @@ function copyCode(text: string, index: number): void {
   border-radius: 1px;
 }
 
+.content-heading:first-child {
+  margin-top: 0;
+}
+
 .content-subheading {
   font-family: var(--font-display-jp);
   font-size: 1.25rem;
@@ -157,7 +184,8 @@ function copyCode(text: string, index: number): void {
   letter-spacing: 0.02em;
 }
 
-/* Quote */
+/* ── Quote ─────────────────────────────────────────────────────── */
+
 .content-quote {
   display: flex;
   gap: 18px;
@@ -188,7 +216,8 @@ function copyCode(text: string, index: number): void {
   margin: 0;
 }
 
-/* Code Block */
+/* ── Code Block ────────────────────────────────────────────────── */
+
 .content-code-block {
   margin: 28px 0;
   border-radius: 12px;
@@ -253,7 +282,8 @@ function copyCode(text: string, index: number): void {
   color: rgba(226, 232, 240, 0.85);
 }
 
-/* Image */
+/* ── Image ──────────────────────────────────────────────────────── */
+
 .content-image {
   margin: 32px 0;
   border-radius: 12px;
@@ -273,7 +303,8 @@ function copyCode(text: string, index: number): void {
   margin-top: 10px;
 }
 
-/* List */
+/* ── List ──────────────────────────────────────────────────────── */
+
 .content-list {
   list-style: none;
   padding: 0;
@@ -298,7 +329,8 @@ function copyCode(text: string, index: number): void {
   margin-top: 2px;
 }
 
-/* Callout */
+/* ── Callout ───────────────────────────────────────────────────── */
+
 .content-callout {
   margin: 32px 0;
   padding: 20px 24px;
@@ -344,18 +376,10 @@ function copyCode(text: string, index: number): void {
   text-transform: uppercase;
 }
 
-.callout-info .callout-label {
-  color: rgba(56, 189, 248, 0.8);
-}
-.callout-warning .callout-label {
-  color: rgba(245, 158, 11, 0.8);
-}
-.callout-tip .callout-label {
-  color: rgba(34, 197, 94, 0.8);
-}
-.callout-quote .callout-label {
-  color: rgba(139, 92, 246, 0.8);
-}
+.callout-info .callout-label { color: rgba(56, 189, 248, 0.8); }
+.callout-warning .callout-label { color: rgba(245, 158, 11, 0.8); }
+.callout-tip .callout-label { color: rgba(34, 197, 94, 0.8); }
+.callout-quote .callout-label { color: rgba(139, 92, 246, 0.8); }
 
 .callout-text {
   margin: 0;
@@ -364,7 +388,8 @@ function copyCode(text: string, index: number): void {
   line-height: 1.7;
 }
 
-/* Divider */
+/* ── Divider ───────────────────────────────────────────────────── */
+
 .content-divider {
   border: none;
   height: 1px;
@@ -377,12 +402,8 @@ function copyCode(text: string, index: number): void {
   margin: 40px 0;
 }
 
-/* First heading shouldn't have top margin */
-.content-heading:first-child {
-  margin-top: 0;
-}
+/* ── Responsive ────────────────────────────────────────────────── */
 
-/* Responsive */
 @media (max-width: 640px) {
   .content-heading {
     font-size: 1.35rem;

@@ -21,7 +21,7 @@ const categories: { key: BlogCategory | "all"; label: string; icon: string }[] =
 </script>
 
 <template>
-  <main class="blog-list-page">
+  <main id="main-content" class="blog-list-page">
     <!-- Hero Section -->
     <section class="blog-hero">
       <div class="hero-bg">
@@ -50,12 +50,14 @@ const categories: { key: BlogCategory | "all"; label: string; icon: string }[] =
 
     <!-- Filters -->
     <section class="blog-filters">
-      <nav class="filter-nav" aria-label="文章分類篩選">
+      <nav class="filter-nav" aria-label="文章分類篩選" role="radiogroup">
         <button
           v-for="cat in categories"
           :key="cat.key"
           class="filter-btn"
           :class="{ 'filter-active': activeCategory === cat.key }"
+          role="radio"
+          :aria-checked="activeCategory === cat.key"
           @click="activeCategory = cat.key"
         >
           <span class="filter-icon">{{ cat.icon }}</span>
@@ -368,16 +370,16 @@ const categories: { key: BlogCategory | "all"; label: string; icon: string }[] =
 }
 
 .filter-active {
-  background: rgba(245, 197, 66, 0.1);
-  border-color: rgba(245, 197, 66, 0.35);
-  color: var(--color-sun-gold);
-  box-shadow: 0 0 16px rgba(245, 197, 66, 0.1);
+  background: rgba(245, 197, 66, 0.18);
+  border-color: rgba(245, 197, 66, 0.45);
+  color: var(--color-amber-glow);
+  box-shadow: 0 0 16px rgba(245, 197, 66, 0.12);
 }
 
 .filter-active:hover {
-  background: rgba(245, 197, 66, 0.15);
-  border-color: rgba(245, 197, 66, 0.5);
-  color: var(--color-sun-gold);
+  background: rgba(245, 197, 66, 0.22);
+  border-color: rgba(245, 197, 66, 0.55);
+  color: var(--color-amber-glow);
 }
 
 .filter-icon {
@@ -398,8 +400,8 @@ const categories: { key: BlogCategory | "all"; label: string; icon: string }[] =
 }
 
 .filter-active .filter-count {
-  background: rgba(245, 197, 66, 0.15);
-  color: var(--color-sun-gold);
+  background: rgba(217, 119, 6, 0.18);
+  color: var(--color-amber-glow);
 }
 
 /* Blog Grid */

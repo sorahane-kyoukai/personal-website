@@ -137,15 +137,18 @@ const themes: Record<ThemeType, ThemeConfig> = {
   },
 };
 
+function isThemeType(value: string | undefined): value is ThemeType {
+  return value !== undefined && value in themes;
+}
+
 export function useCategoryTheme() {
   const route = useRoute();
 
   const currentTheme = computed<ThemeConfig>(() => {
-    // Extract the first segment of the path, removing the leading slash
-    const slug = route.path.split("/")[1] as ThemeType | undefined;
+    const pathSegment = route.path.split("/")[1];
 
-    if (slug && themes[slug]) {
-      return themes[slug];
+    if (isThemeType(pathSegment)) {
+      return themes[pathSegment];
     }
     return themes.default;
   });

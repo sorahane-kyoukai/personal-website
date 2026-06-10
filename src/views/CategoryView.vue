@@ -19,6 +19,7 @@ const bgImage = computed(() => currentTheme.value.backgroundImage || "");
 
 <template>
   <main
+    id="main-content"
     class="category-page"
     :class="[`layout-${currentTheme.layoutMode}`]"
     :style="themeStyles"

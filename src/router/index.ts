@@ -48,18 +48,18 @@ const router = createRouter({
       meta: { title: "文章 - 空羽ノ境" },
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
     }
-    if (to.hash) {
-      return { el: to.hash, behavior: "smooth" };
+    if (_to.hash) {
+      return { el: _to.hash, behavior: "smooth" };
     }
     return { top: 0, behavior: "smooth" };
   },
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   let title = to.meta.title as string | undefined;
 
   // Dynamic title for blog post pages

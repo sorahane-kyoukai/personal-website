@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BlogPost } from "@/types/blog";
+import { categoryDisplayMap } from "@/data/categories";
 
 interface Props {
   post: BlogPost;
@@ -8,13 +9,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const categoryLabels: Record<string, { label: string; icon: string }> = {
-  tech: { label: "技術", icon: "◆" },
-  essay: { label: "隨筆", icon: "◇" },
-  community: { label: "社群", icon: "◎" },
-};
-
-const cat = categoryLabels[props.post.category] ?? { label: "文章", icon: "○" };
+const cat = categoryDisplayMap[props.post.category] ?? { label: "文章", icon: "○" };
 </script>
 
 <template>
@@ -129,6 +124,10 @@ const cat = categoryLabels[props.post.category] ?? { label: "文章", icon: "○
     0 8px 32px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(245, 197, 66, 0.15),
     0 0 60px rgba(245, 197, 66, 0.08);
+}
+
+.blog-card:active .card-inner {
+  transform: translateY(-1px) scale(0.98);
 }
 
 .blog-card:hover .card-inner::before,

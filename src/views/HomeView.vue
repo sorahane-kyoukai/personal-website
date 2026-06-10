@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { watch } from "vue";
+import { watch, defineAsyncComponent } from "vue";
 import { useScrollStore } from "@/stores/scroll";
 import { useScrollProgress } from "@/composables/useScrollProgress";
-import CosmicParticles from "@/components/ui/CosmicParticles.vue";
 import HeroSection from "@/components/home/HeroSection.vue";
+
+const CosmicParticles = defineAsyncComponent(
+  () => import("@/components/ui/CosmicParticles.vue"),
+);
 import CosmicGiantSection from "@/components/home/CosmicGiantSection.vue";
 import CategoriesSection from "@/components/home/CategoriesSection.vue";
 import { getAssetUrl } from "@/utils/assets";
@@ -22,7 +25,7 @@ watch(
 </script>
 
 <template>
-  <main class="home-page">
+  <main id="main-content" class="home-page">
     <!-- Background Layers -->
     <div class="background-container">
       <!-- Hero Background (Twilight) -->

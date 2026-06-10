@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 
 const canvas = ref<HTMLCanvasElement | null>(null);
 let ctx: CanvasRenderingContext2D | null = null;
-let animationFrameId: number;
+let animationFrameId = 0;
 let feathers: Feather[] = [];
 
 interface Feather {
@@ -19,25 +19,25 @@ interface Feather {
   swaySpeed: number;
 }
 
-function resizeCanvas() {
+function resizeCanvas(): void {
   if (!canvas.value) return;
   canvas.value.width = window.innerWidth;
   canvas.value.height = window.innerHeight;
 }
 
-function createFeathers() {
+function createFeathers(): void {
   const count = Math.min(window.innerWidth * 0.03, 30);
   feathers = [];
   for (let i = 0; i < count; i++) {
-    feathers.push(createFeather());
+    feathers.push(makeFeather());
   }
 }
 
-function createFeather(yOverride?: number): Feather {
+function makeFeather(yOverride?: number): Feather {
   return {
     x: Math.random() * window.innerWidth,
     y: yOverride ?? Math.random() * window.innerHeight,
-    size: Math.random() * 10 + 8, // Length
+    size: Math.random() * 10 + 8,
     speedX: Math.random() * 0.5 - 0.25,
     speedY: Math.random() * 0.8 + 0.4,
     rotation: Math.random() * 360,
@@ -48,32 +48,30 @@ function createFeather(yOverride?: number): Feather {
   };
 }
 
-function drawFeather(ctx: CanvasRenderingContext2D, f: Feather) {
-  ctx.save();
-  ctx.translate(f.x, f.y);
-  ctx.rotate((f.rotation * Math.PI) / 180);
-  ctx.globalAlpha = f.opacity;
-  ctx.fillStyle = "#ffffff";
+function drawFeather(ctx2d: CanvasRenderingContext2D, f: Feather): void {
+  ctx2d.save();
+  ctx2d.translate(f.x, f.y);
+  ctx2d.rotate((f.rotation * Math.PI) / 180);
+  ctx2d.globalAlpha = f.opacity;
+  ctx2d.fillStyle = "#ffffff";
 
-  // Draw a simple feather shape using bezier curves
-  ctx.beginPath();
-  ctx.moveTo(0, -f.size / 2);
-  ctx.quadraticCurveTo(f.size / 3, -f.size / 4, 0, f.size / 2); // Right side
-  ctx.quadraticCurveTo(-f.size / 3, -f.size / 4, 0, -f.size / 2); // Left side
-  ctx.fill();
+  ctx2d.beginPath();
+  ctx2d.moveTo(0, -f.size / 2);
+  ctx2d.quadraticCurveTo(f.size / 3, -f.size / 4, 0, f.size / 2);
+  ctx2d.quadraticCurveTo(-f.size / 3, -f.size / 4, 0, -f.size / 2);
+  ctx2d.fill();
 
-  // Draw quill/rachis
-  ctx.beginPath();
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
-  ctx.lineWidth = 1;
-  ctx.moveTo(0, -f.size / 2);
-  ctx.lineTo(0, f.size / 2);
-  ctx.stroke();
+  ctx2d.beginPath();
+  ctx2d.strokeStyle = "rgba(255, 255, 255, 0.8)";
+  ctx2d.lineWidth = 1;
+  ctx2d.moveTo(0, -f.size / 2);
+  ctx2d.lineTo(0, f.size / 2);
+  ctx2d.stroke();
 
-  ctx.restore();
+  ctx2d.restore();
 }
 
-function animate() {
+function animate(): void {
   if (!ctx || !canvas.value) return;
 
   ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
@@ -85,7 +83,7 @@ function animate() {
     f.rotation += f.rotationSpeed + Math.sin(f.sway) * 0.5;
 
     if (f.y > canvas.value!.height) {
-      feathers[index] = createFeather(-20);
+      feathers[index] = makeFeather(-20);
     }
     if (f.x > canvas.value!.width + 20) {
       f.x = -20;
@@ -99,27 +97,29 @@ function animate() {
   animationFrameId = requestAnimationFrame(animate);
 }
 
+// Stable function reference so addEventListener/removeEventListener match
+function handleResize(): void {
+  resizeCanvas();
+  createFeathers();
+}
+
 onMounted(() => {
   if (canvas.value) {
     ctx = canvas.value.getContext("2d");
-    resizeCanvas();
-    createFeathers();
+    handleResize();
     animate();
-    window.addEventListener("resize", () => {
-      resizeCanvas();
-      createFeathers();
-    });
+    window.addEventListener("resize", handleResize);
   }
 });
 
 onUnmounted(() => {
   cancelAnimationFrame(animationFrameId);
-  window.removeEventListener("resize", resizeCanvas); // Fixed: was passing createFeathers in resizeCanvas listener? No, need separate removal or stable function
+  window.removeEventListener("resize", handleResize);
 });
 </script>
 
 <template>
-  <canvas ref="canvas" class="feather-canvas"></canvas>
+  <canvas ref="canvas" class="feather-canvas" aria-hidden="true"></canvas>
 </template>
 
 <style scoped>
