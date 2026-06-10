@@ -9,11 +9,8 @@ interface Props {
   variant?:
     | "dialog"
     | "tech"
-    | "terminal"
     | "minimal"
-    | "scroll"
     | "soft"
-    | "vinyl"
     | "default";
   thumbnail?: string;
 }
@@ -29,7 +26,7 @@ const variantClass = computed(() => `card-${props.variant}`);
 <template>
   <article class="article-card" :class="variantClass">
     <div
-      v-if="thumbnail && props.variant !== 'terminal'"
+      v-if="thumbnail"
       class="card-thumbnail"
     >
       <img :src="thumbnail" :alt="title" loading="lazy" />
@@ -52,8 +49,8 @@ const variantClass = computed(() => `card-${props.variant}`);
 
       <div class="card-footer">
         <a href="#" class="read-more">
-          {{ props.variant === "terminal" ? ">> READ_FILE" : "Read Article" }}
-          <span class="arrow" v-if="props.variant !== 'terminal'">→</span>
+          Read Article
+          <span class="arrow">→</span>
         </a>
       </div>
     </div>
@@ -195,45 +192,7 @@ const variantClass = computed(() => `card-${props.variant}`);
   box-shadow: 0 8px 25px rgba(219, 39, 119, 0.2);
 }
 
-/* 2. Programming (Terminal) */
-
-.card-terminal {
-  background: #000;
-
-  border: 1px dashed var(--theme-primary);
-
-  border-radius: 0;
-
-  font-family: "Courier New", monospace;
-
-  color: var(--theme-text);
-}
-
-.card-terminal .card-thumbnail {
-  display: none; /* No images in terminal usually */
-}
-
-.card-terminal .card-title {
-  font-family: inherit;
-
-  color: var(--theme-accent);
-}
-
-.card-terminal .card-title::before {
-  content: "./";
-
-  color: var(--theme-primary);
-}
-
-.card-terminal:hover {
-  background: #0a0a0a;
-
-  border-style: solid;
-
-  box-shadow: 0 0 15px var(--theme-primary);
-}
-
-/* 3. Anime (Tech Interface - Light) */
+/* 2. Anime (Tech Interface - Light) */
 
 .card-tech {
   background: rgba(255, 255, 255, 0.6);
@@ -282,7 +241,7 @@ const variantClass = computed(() => `card-${props.variant}`);
   box-shadow: 0 4px 20px rgba(14, 165, 233, 0.2);
 }
 
-/* 4. Minimal (Thoughts/Zen) */
+/* 3. Minimal (Thoughts/Zen) */
 
 .card-minimal {
   background: transparent;
@@ -326,41 +285,7 @@ const variantClass = computed(() => `card-${props.variant}`);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ensure readability */
 }
 
-/* 5. Writing (Scroll/Paper) */
-
-.card-scroll {
-  background: #f1f5f9; /* Slightly brighter paper */
-
-  color: #18181b !important;
-
-  border: none;
-
-  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-
-  margin-bottom: 10px;
-
-  margin-right: 10px;
-}
-
-.card-scroll .card-title,
-.card-scroll .card-excerpt,
-.card-scroll .card-meta {
-  color: #18181b !important;
-
-  font-family: "Shippori Mincho", serif;
-}
-
-.card-scroll .thumbnail-overlay {
-  display: none;
-}
-
-.card-scroll:hover {
-  transform: translate(-4px, -4px);
-
-  box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* 6. Health (Soft/Organic - Warm) */
+/* 4. Health (Soft/Organic - Warm) */
 
 .card-soft {
   border-radius: 24px;
@@ -386,94 +311,4 @@ const variantClass = computed(() => `card-${props.variant}`);
   box-shadow: 0 8px 25px rgba(245, 158, 11, 0.25);
 }
 
-/* 7. Music (Vinyl - Light Mode Adapted) */
-
-.card-vinyl {
-  background: rgba(255, 255, 255, 0.7); /* More opaque */
-
-  backdrop-filter: blur(16px);
-
-  border: 1px solid rgba(255, 255, 255, 0.6);
-
-  border-radius: 8px;
-
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow */
-}
-
-.card-vinyl .card-thumbnail img {
-  border-radius: 4px;
-}
-
-.card-vinyl:hover {
-  border-color: var(--theme-accent);
-
-  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.25); /* violet shadow */
-
-  background: rgba(255, 255, 255, 0.85);
-}
-
-.card-vinyl .card-title {
-  /* Ensure title respects the dark theme text color */
-
-  color: var(--theme-text);
-}
-
-/* 8. Game Dev (RPG Text Box) */
-
-.card-rpg {
-  background: linear-gradient(
-    180deg,
-    #1e3a8a 0%,
-    #172554 100%
-  ); /* Deep RPG Blue */
-
-  border: 2px solid #ffffff;
-
-  border-radius: 4px;
-
-  /* Retro double border effect */
-
-  box-shadow:
-    0 0 0 2px #000000,
-    0 0 0 4px #ffffff,
-    0 10px 20px rgba(0, 0, 0, 0.5);
-
-  font-family: "Courier New", monospace;
-
-  color: #fefce8;
-}
-
-.card-rpg .card-thumbnail {
-  border-bottom: 2px solid #ffffff;
-
-  image-rendering: pixelated; /* If thumbnail is pixel art */
-}
-
-.card-rpg .card-title {
-  color: #facc15; /* Gold */
-
-  text-shadow: 2px 2px 0px #000;
-}
-
-.card-rpg:hover {
-  transform: translateY(-4px);
-
-  background: linear-gradient(
-    180deg,
-    #2563eb 0%,
-    #1e40af 100%
-  ); /* Lighter Blue */
-}
-
-.card-rpg .read-more::before {
-  content: "▶ ";
-
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
 </style>

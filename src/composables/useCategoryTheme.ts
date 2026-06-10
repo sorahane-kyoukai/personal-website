@@ -5,12 +5,8 @@ import { getAssetUrl } from "@/utils/assets";
 export type ThemeType =
   | "galgame"
   | "anime"
-  | "programming"
-  | "gamedev"
   | "thoughts"
-  | "writing"
   | "health"
-  | "music"
   | "default";
 
 export interface ThemeConfig {
@@ -28,30 +24,22 @@ export interface ThemeConfig {
   bgEffect:
     | "sakura"
     | "speed-lines"
-    | "matrix"
     | "ripple"
     | "ink"
     | "aurora"
-    | "visualizer"
     | "stars"
     | "god-rays"
     | "feathers"
     | "bubbles"
     | "dust"
-    | "snow"
-    | "pixel"
-    | "literary";
+    | "snow";
   cardStyle:
     | "dialog"
     | "tech"
-    | "terminal"
     | "minimal"
-    | "scroll"
-    | "soft"
-    | "vinyl"
-    | "rpg";
+    | "soft";
   backgroundImage?: string;
-  layoutMode: "center" | "left" | "console" | "zen";
+  layoutMode: "center" | "left" | "zen";
   fontFamily?: string;
   textShadow?: string;
 }
@@ -93,44 +81,6 @@ const themes: Record<ThemeType, ThemeConfig> = {
     layoutMode: "center",
     textShadow: "0 0 20px rgba(255, 255, 255, 0.8)",
   },
-  programming: {
-    key: "programming",
-    title: "程式技術",
-    subtitle: 'System.out.println("Hello World");',
-    description: "技術文章、開發心得、程式教學",
-    icon: getAssetUrl("/images/icons/programming_icon.webp"),
-    colors: {
-      primary: "#4ade80", // green-400
-      accent: "#22c55e", // green-500
-      text: "#dcfce7", // green-50
-      bgOverlay: "rgba(5, 5, 5, 0.85)", // High contrast dark
-    },
-    bgEffect: "matrix",
-    cardStyle: "terminal",
-    layoutMode: "console",
-    fontFamily: '"JetBrains Mono", "Fira Code", monospace',
-    backgroundImage: getAssetUrl("/images/code_bg.webp"),
-    textShadow: "0 0 10px rgba(74, 222, 128, 0.5)",
-  },
-  gamedev: {
-    key: "gamedev",
-    title: "遊戲開發",
-    subtitle: "Press Start to Begin",
-    description: "遊戲引擎、圖學渲染、關卡設計",
-    icon: getAssetUrl("/images/icons/gamedev_icon.webp"),
-    colors: {
-      primary: "#facc15", // gold
-      accent: "#ef4444", // red
-      text: "#fefce8", // pale yellow
-      bgOverlay: "rgba(0, 0, 0, 0.4)",
-    },
-    bgEffect: "pixel",
-    cardStyle: "rpg",
-    layoutMode: "console",
-    fontFamily: '"Courier New", Courier, monospace',
-    backgroundImage: getAssetUrl("/images/gamedev_bg.webp"),
-    textShadow: "2px 2px 0px #451a03",
-  },
   thoughts: {
     key: "thoughts",
     title: "心境與筆記",
@@ -150,26 +100,6 @@ const themes: Record<ThemeType, ThemeConfig> = {
     backgroundImage: getAssetUrl("/images/thoughts_bg.webp"),
     textShadow: "0 4px 12px rgba(0, 0, 0, 0.8)",
   },
-  writing: {
-    key: "writing",
-    title: "寫作技巧",
-    subtitle: "The Art of Storytelling",
-    description: "創作心法、寫作技巧、故事構思",
-    icon: getAssetUrl("/images/icons/writing_icon.webp"),
-    colors: {
-      primary: "#e2e8f0", // slate-200
-      accent: "#fcd34d", // amber-300
-      text: "#fefce8", // yellow-50
-      bgOverlay:
-        "radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%)",
-    },
-    bgEffect: "literary", // Gold dust was here
-    cardStyle: "scroll",
-    layoutMode: "zen",
-    fontFamily: '"Shippori Mincho", serif',
-    backgroundImage: getAssetUrl("/images/writing_bg.webp"),
-    textShadow: "0 2px 4px rgba(0,0,0,0.5)",
-  },
   health: {
     key: "health",
     title: "健康知識",
@@ -186,24 +116,6 @@ const themes: Record<ThemeType, ThemeConfig> = {
     cardStyle: "soft",
     layoutMode: "center",
     backgroundImage: getAssetUrl("/images/health_bg.webp"),
-    textShadow: "none",
-  },
-  music: {
-    key: "music",
-    title: "音樂賞析",
-    subtitle: "Resonance",
-    description: "音樂評論、專輯推薦、聆聽感想",
-    icon: getAssetUrl("/images/icons/music_icon.webp"),
-    colors: {
-      primary: "#a21caf", // fuchsia-700
-      accent: "#4338ca", // indigo-700
-      text: "#1e1b4b", // indigo-950
-      bgOverlay: "rgba(255, 255, 255, 0.85)", // Stronger white wash
-    },
-    bgEffect: "visualizer",
-    cardStyle: "vinyl",
-    layoutMode: "center",
-    backgroundImage: getAssetUrl("/images/music_bg.webp"),
     textShadow: "none",
   },
   default: {

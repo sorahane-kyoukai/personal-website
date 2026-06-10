@@ -180,25 +180,7 @@ const bgImage = computed(() => currentTheme.value.backgroundImage || "");
   font-size: clamp(40px, 7vw, 64px); /* Larger title */
 }
 
-/* Console (Programming) */
-.layout-console .category-header {
-  text-align: left;
-  font-family: monospace;
-}
-.layout-console .category-icon {
-  border-radius: 4px; /* Square icon */
-  border: 1px dashed var(--theme-primary);
-  background: transparent;
-}
-.layout-console .category-title::before {
-  content: "> ";
-  color: var(--theme-accent);
-}
-.layout-console .category-subtitle::before {
-  content: "// ";
-}
-
-/* Zen (Writing/Thoughts) */
+/* Zen (Thoughts) */
 .layout-zen .category-header {
   text-align: center;
   margin-bottom: 100px;

@@ -10,13 +10,9 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "Galgame", href: "/galgame" },
   { name: "二次元天地", href: "/anime" },
-  { name: "程式技術", href: "/programming" },
-  { name: "遊戲開發", href: "/gamedev" },
   { name: "星塵書庫", href: "/blog" },
   { name: "心境與筆記", href: "/thoughts" },
-  { name: "寫作技巧", href: "/writing" },
   { name: "健康知識", href: "/health" },
-  { name: "音樂賞析", href: "/music" },
 ];
 
 const isScrolled = ref(false);

@@ -32,7 +32,7 @@ function onTypewriterComplete(): void {
 const socialLinks = [
   {
     name: "Threads",
-    href: "https://short.dennysora.me/thread",
+    href: "https://www.threads.com/@sorahane.kyoukai",
     icon: "threads",
   },
   {

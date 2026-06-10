@@ -9,14 +9,10 @@ const props = defineProps<{
 // Lazy load heavy background components
 const components = {
   sakura: defineAsyncComponent(() => import("./effects/SakuraParticles.vue")),
-  matrix: defineAsyncComponent(() => import("./effects/MatrixRain.vue")),
   "speed-lines": defineAsyncComponent(() => import("./effects/SpeedLines.vue")),
   ripple: defineAsyncComponent(() => import("./effects/RippleEffect.vue")),
   ink: defineAsyncComponent(() => import("./effects/InkSpread.vue")),
   aurora: defineAsyncComponent(() => import("./effects/AuroraBorealis.vue")),
-  visualizer: defineAsyncComponent(
-    () => import("./effects/AudioVisualizer.vue"),
-  ),
   "god-rays": defineAsyncComponent(() => import("./effects/GodRays.vue")),
   feathers: defineAsyncComponent(
     () => import("./effects/FeatherParticles.vue"),
@@ -24,10 +20,6 @@ const components = {
   bubbles: defineAsyncComponent(() => import("./effects/Bubbles.vue")),
   dust: defineAsyncComponent(() => import("./effects/DustParticles.vue")),
   snow: defineAsyncComponent(() => import("./effects/SnowParticles.vue")),
-  pixel: defineAsyncComponent(() => import("./effects/PixelParticles.vue")),
-  literary: defineAsyncComponent(
-    () => import("./effects/LiteraryParticles.vue"),
-  ),
 };
 
 const currentEffectComponent = computed(() => {
