@@ -284,22 +284,24 @@ function copyCode(text: string, index: number): void {
 /* ── Image ──────────────────────────────────────────────────────── */
 
 .content-image {
-  margin: 32px 0;
-  border-radius: 12px;
-  overflow: hidden;
+  margin: 36px 0;
 }
 
 .content-image img {
   width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .content-image figcaption {
   text-align: center;
-  font-size: 0.875rem;
-  color: rgba(148, 163, 184, 0.6);
-  margin-top: 10px;
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+  font-size: 0.8rem;
+  color: rgba(148, 163, 184, 0.4);
+  margin-top: 8px;
 }
 
 /* ── List ──────────────────────────────────────────────────────── */

@@ -201,7 +201,7 @@ if (!post.value) {
 /* ── Article ───────────────────────────────────────────────────── */
 
 .post-article {
-  max-width: 820px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 0 24px 80px;
 }
@@ -433,7 +433,7 @@ if (!post.value) {
 
 .related-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 12px;
 }
 
