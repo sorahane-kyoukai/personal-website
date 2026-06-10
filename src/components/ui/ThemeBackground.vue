@@ -65,22 +65,3 @@ const currentEffectComponent = computed(() => {
   opacity: 0;
 }
 </style>
-
-<style scoped>
-.theme-background {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
