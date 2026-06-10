@@ -201,12 +201,12 @@
 
 /* Global layout tokens */
 :root {
-  --header-height: 118px;
+  --header-height: 72px;
 }
 
 @media (max-width: 640px) {
   :root {
-    --header-height: 98px;
+    --header-height: 60px;
   }
 }
 

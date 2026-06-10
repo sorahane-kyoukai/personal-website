@@ -311,10 +311,10 @@ onUnmounted(() => {
 
 .logo-text {
   font-family: var(--font-display-jp);
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--color-star-white);
-  letter-spacing: 0.25em;
+  letter-spacing: 0.18em;
   text-shadow:
     0 0 18px rgba(248, 250, 252, 0.35),
     0 0 35px rgba(245, 197, 66, 0.25);
@@ -337,11 +337,11 @@ onUnmounted(() => {
 
 .nav-link {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-moon-silver);
   text-decoration: none;
-  padding: 10px 0;
+  padding: 6px 0;
   letter-spacing: 0.08em;
   transition:
     color 0.3s ease,
@@ -482,8 +482,8 @@ onUnmounted(() => {
   }
 
   .logo-text {
-    font-size: 24px;
-    letter-spacing: 0.2em;
+    font-size: 18px;
+    letter-spacing: 0.12em;
   }
 
   .logo-tagline {
