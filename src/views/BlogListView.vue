@@ -142,7 +142,7 @@ const activeLabel = computed(() => {
 
 .blog-hero {
   padding: 40px 24px 0;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -211,7 +211,7 @@ const activeLabel = computed(() => {
 .blog-layout {
   display: flex;
   gap: 0;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 24px 24px 80px;
   align-items: flex-start;

@@ -150,17 +150,16 @@ function copyCode(text: string, index: number): void {
   color: var(--color-star-white);
   margin: 48px 0 20px;
   letter-spacing: 0.04em;
-  text-shadow: 0 0 12px rgba(248, 250, 252, 0.15);
   position: relative;
 }
 
 .content-heading::after {
   content: "";
   display: block;
-  width: 48px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(245, 197, 66, 0.6), transparent);
-  margin-top: 10px;
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(226, 232, 240, 0.25), transparent);
+  margin-top: 8px;
   border-radius: 1px;
 }
 

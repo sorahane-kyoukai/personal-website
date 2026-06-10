@@ -206,7 +206,7 @@ if (!post.value) {
 /* ── Article ───────────────────────────────────────────────────── */
 
 .post-article {
-  max-width: 720px;
+  max-width: 820px;
   margin: 0 auto;
   padding: 0 24px 80px;
 }
@@ -270,6 +270,7 @@ if (!post.value) {
 
 .cat-icon {
   font-size: 11px;
+  opacity: 0.7;
 }
 
 .meta-sep {
@@ -296,9 +297,7 @@ if (!post.value) {
   line-height: 1.4;
   color: var(--color-star-white);
   letter-spacing: 0.04em;
-  text-shadow:
-    0 0 20px rgba(248, 250, 252, 0.15),
-    0 0 40px rgba(245, 197, 66, 0.06);
+  text-shadow: 0 0 12px rgba(248, 250, 252, 0.08);
   margin-bottom: 16px;
 }
 
@@ -374,9 +373,9 @@ if (!post.value) {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.06) 30%,
-    rgba(245, 197, 66, 0.12) 50%,
-    rgba(255, 255, 255, 0.06) 70%,
+    rgba(255, 255, 255, 0.05) 30%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 70%,
     transparent 100%
   );
 }
@@ -384,13 +383,10 @@ if (!post.value) {
 .rule-orb {
   position: relative;
   z-index: 1;
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: var(--color-sun-gold);
-  box-shadow:
-    0 0 8px rgba(245, 197, 66, 0.4),
-    0 0 16px rgba(245, 197, 66, 0.2);
+  background: rgba(226, 232, 240, 0.3);
 }
 
 /* ── Body ──────────────────────────────────────────────────────── */
@@ -525,8 +521,7 @@ if (!post.value) {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--color-sun-gold);
-  box-shadow: 0 0 6px rgba(245, 197, 66, 0.4);
+  background: rgba(226, 232, 240, 0.35);
 }
 
 .related-title {
