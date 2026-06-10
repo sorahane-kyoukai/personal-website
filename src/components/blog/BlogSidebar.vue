@@ -135,8 +135,6 @@ function selectCategory(key: BlogCategory | "all"): void {
   border-radius: 16px;
   position: sticky;
   top: calc(var(--header-height) + 24px);
-  max-height: calc(100vh - var(--header-height) - 48px);
-  overflow-y: auto;
 }
 
 /* ── Sections ──────────────────────────────────────────────────── */
