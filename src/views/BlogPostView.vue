@@ -114,11 +114,6 @@ if (!post.value) {
         </div>
       </header>
 
-      <!-- Decorative Rule -->
-      <div class="section-rule">
-        <span class="rule-orb"></span>
-      </div>
-
       <!-- Content Body -->
       <div class="post-body">
         <BlogPostContent :blocks="post.content" />
@@ -263,8 +258,8 @@ if (!post.value) {
   gap: 6px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--color-sun-gold);
-  letter-spacing: 0.08em;
+  color: rgba(148, 163, 184, 0.7);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -352,43 +347,6 @@ if (!post.value) {
   color: rgba(226, 232, 240, 0.35);
 }
 
-/* ── Section Rule ──────────────────────────────────────────────── */
-
-.section-rule {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 0;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.section-rule::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.05) 30%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.05) 70%,
-    transparent 100%
-  );
-}
-
-.rule-orb {
-  position: relative;
-  z-index: 1;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(226, 232, 240, 0.3);
-}
-
 /* ── Body ──────────────────────────────────────────────────────── */
 
 .post-body {
@@ -427,10 +385,9 @@ if (!post.value) {
 
 .share-btn:hover {
   background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(245, 197, 66, 0.3);
+  border-color: rgba(100, 180, 255, 0.25);
   color: var(--color-star-white);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(245, 197, 66, 0.08);
 }
 
 .share-btn:active {
@@ -499,22 +456,20 @@ if (!post.value) {
 
 .related-card:hover {
   background: rgba(15, 23, 42, 0.65);
-  border-color: rgba(245, 197, 66, 0.15);
-  transform: translateY(-3px);
-  box-shadow:
-    0 8px 28px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(245, 197, 66, 0.06);
+  border-color: rgba(100, 180, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .related-cat {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+  font-size: 10px;
   font-weight: 500;
-  color: var(--color-sun-gold);
+  color: rgba(148, 163, 184, 0.5);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 
 .related-cat-dot {
@@ -583,12 +538,9 @@ if (!post.value) {
 }
 
 .back-to-top:hover {
-  border-color: rgba(245, 197, 66, 0.35);
-  color: var(--color-sun-gold);
+  border-color: rgba(100, 180, 255, 0.3);
+  color: rgba(100, 180, 255, 0.9);
   transform: translateY(-3px) scale(1.05);
-  box-shadow:
-    0 4px 20px rgba(245, 197, 66, 0.15),
-    0 0 0 1px rgba(245, 197, 66, 0.05);
 }
 
 .back-to-top:active {

@@ -132,7 +132,7 @@ function selectCategory(key: BlogCategory | "all"): void {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  border-radius: 6px;
   position: sticky;
   top: calc(var(--header-height) + 24px);
 }
@@ -151,20 +151,19 @@ function selectCategory(key: BlogCategory | "all"): void {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(226, 232, 240, 0.45);
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(148, 163, 184, 0.5);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 14px;
-  padding: 0 4px;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  padding: 0 2px;
 }
 
 .heading-icon {
   font-size: 10px;
-  color: var(--color-sun-gold);
-  opacity: 0.6;
+  color: rgba(100, 180, 255, 0.5);
 }
 
 /* ── Category List ─────────────────────────────────────────────── */
@@ -216,11 +215,7 @@ function selectCategory(key: BlogCategory | "all"): void {
   bottom: 6px;
   width: 3px;
   border-radius: 0 3px 3px 0;
-  background: linear-gradient(
-    180deg,
-    var(--color-sun-gold),
-    var(--color-cosmic-purple-light)
-  );
+  background: rgba(100, 180, 255, 0.6);
   transform: scaleY(0);
   opacity: 0;
   transition:
@@ -234,14 +229,14 @@ function selectCategory(key: BlogCategory | "all"): void {
 }
 
 .category-active {
-  background: rgba(245, 197, 66, 0.06);
+  background: rgba(100, 180, 255, 0.06);
   color: var(--color-star-white);
   font-weight: 500;
   padding-left: 16px;
 }
 
 .category-active:hover {
-  background: rgba(245, 197, 66, 0.09);
+  background: rgba(100, 180, 255, 0.1);
   color: var(--color-star-white);
 }
 
@@ -266,8 +261,8 @@ function selectCategory(key: BlogCategory | "all"): void {
 }
 
 .count-active {
-  background: rgba(245, 197, 66, 0.15);
-  color: var(--color-sun-gold);
+  background: rgba(100, 180, 255, 0.15);
+  color: rgba(100, 180, 255, 0.9);
   transform: scale(1.1);
 }
 
@@ -344,11 +339,10 @@ function selectCategory(key: BlogCategory | "all"): void {
 }
 
 .stat-value {
-  font-family: var(--font-display-en);
-  font-size: 22px;
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+  font-size: 20px;
   font-weight: 600;
   color: var(--color-star-white);
-  text-shadow: 0 0 12px rgba(248, 250, 252, 0.15);
 }
 
 .stat-label {

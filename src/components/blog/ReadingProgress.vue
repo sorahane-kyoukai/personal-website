@@ -40,12 +40,7 @@ const progressPercent = computed(() => (rawProgress.value ?? 0) * 100);
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(67, 56, 202, 0.7) 0%,
-    rgba(245, 197, 66, 0.85) 70%,
-    rgba(245, 197, 66, 0.95) 100%
-  );
+  background: rgba(100, 180, 255, 0.7);
   transition: width 0.12s linear;
   border-radius: 0 1px 1px 0;
 }

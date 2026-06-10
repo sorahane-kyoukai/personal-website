@@ -173,9 +173,7 @@ const activeLabel = computed(() => {
 
 .title-icon {
   font-size: 22px;
-  color: var(--color-sun-gold);
-  opacity: 0.7;
-  filter: drop-shadow(0 0 6px rgba(245, 197, 66, 0.4));
+  color: rgba(100, 180, 255, 0.6);
 }
 
 .hero-sub {
@@ -200,7 +198,7 @@ const activeLabel = computed(() => {
   height: 1px;
   background: linear-gradient(
     90deg,
-    rgba(245, 197, 66, 0.25) 0%,
+    rgba(100, 180, 255, 0.2) 0%,
     rgba(255, 255, 255, 0.04) 60%,
     transparent 100%
   );
@@ -269,15 +267,15 @@ const activeLabel = computed(() => {
 }
 
 .chip-active {
-  background: rgba(245, 197, 66, 0.12);
-  border-color: rgba(245, 197, 66, 0.3);
-  color: var(--color-sun-gold);
+  background: rgba(100, 180, 255, 0.1);
+  border-color: rgba(100, 180, 255, 0.25);
+  color: rgba(100, 180, 255, 0.85);
 }
 
 .chip-active:hover {
-  background: rgba(245, 197, 66, 0.16);
-  border-color: rgba(245, 197, 66, 0.4);
-  color: var(--color-sun-gold);
+  background: rgba(100, 180, 255, 0.14);
+  border-color: rgba(100, 180, 255, 0.35);
+  color: rgba(100, 180, 255, 0.9);
 }
 
 .chip-count {
@@ -288,7 +286,7 @@ const activeLabel = computed(() => {
 }
 
 .chip-active .chip-count {
-  background: rgba(245, 197, 66, 0.15);
+  background: rgba(100, 180, 255, 0.12);
 }
 
 /* ── Section Header ────────────────────────────────────────────── */
@@ -304,8 +302,7 @@ const activeLabel = computed(() => {
   width: 3px;
   height: 16px;
   border-radius: 2px;
-  background: var(--color-sun-gold);
-  opacity: 0.5;
+  background: rgba(100, 180, 255, 0.5);
 }
 
 .section-label {
@@ -377,9 +374,9 @@ const activeLabel = computed(() => {
 }
 
 .footer-link:hover {
-  background: rgba(245, 197, 66, 0.08);
-  border-color: rgba(245, 197, 66, 0.2);
-  color: var(--color-sun-gold);
+  background: rgba(100, 180, 255, 0.08);
+  border-color: rgba(100, 180, 255, 0.15);
+  color: rgba(100, 180, 255, 0.85);
 }
 
 .footer-link:hover .footer-arrow {
