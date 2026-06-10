@@ -14,8 +14,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "Galgame", href: "/galgame" },
   { name: "二次元天地", href: "/anime" },
-  { name: "星塵書庫", href: "/blog" },
-  { name: "心境與筆記", href: "/thoughts" },
+  { name: "星塵筆記", href: "/blog" },
   { name: "健康知識", href: "/health" },
 ];
 

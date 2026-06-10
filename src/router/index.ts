@@ -24,12 +24,6 @@ const router = createRouter({
       meta: { title: "二次元天地 - 空羽ノ境" },
     },
     {
-      path: "/thoughts",
-      name: "thoughts",
-      component: () => import("@/views/CategoryView.vue"),
-      meta: { title: "心境與筆記 - 空羽ノ境" },
-    },
-    {
       path: "/health",
       name: "health",
       component: () => import("@/views/CategoryView.vue"),
@@ -39,7 +33,7 @@ const router = createRouter({
       path: "/blog",
       name: "blog",
       component: () => import("@/views/BlogListView.vue"),
-      meta: { title: "星塵書庫 - 空羽ノ境" },
+      meta: { title: "星塵筆記 - 空羽ノ境" },
     },
     {
       path: "/blog/:slug",

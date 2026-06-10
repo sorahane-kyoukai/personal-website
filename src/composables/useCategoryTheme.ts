@@ -5,7 +5,6 @@ import { getAssetUrl } from "@/utils/assets";
 export type ThemeType =
   | "galgame"
   | "anime"
-  | "thoughts"
   | "health"
   | "default";
 
@@ -80,25 +79,6 @@ const themes: Record<ThemeType, ThemeConfig> = {
     backgroundImage: getAssetUrl("/images/anime_bg.webp"),
     layoutMode: "center",
     textShadow: "0 0 20px rgba(255, 255, 255, 0.8)",
-  },
-  thoughts: {
-    key: "thoughts",
-    title: "心境與筆記",
-    subtitle: "Thoughts & Notes",
-    description: "生活隨筆、思考紀錄、個人感想",
-    icon: getAssetUrl("/images/icons/thoughts_icon.webp"),
-    colors: {
-      primary: "#94a3b8", // slate-400
-      accent: "#cbd5e1", // slate-300
-      text: "#f8fafc", // slate-50
-      bgOverlay:
-        "linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.9))",
-    },
-    bgEffect: "ripple",
-    cardStyle: "minimal",
-    layoutMode: "zen",
-    backgroundImage: getAssetUrl("/images/thoughts_bg.webp"),
-    textShadow: "0 4px 12px rgba(0, 0, 0, 0.8)",
   },
   health: {
     key: "health",

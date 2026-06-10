@@ -62,13 +62,6 @@ const categories: Category[] = [
     iconImage: getAssetUrl("/images/icons/anime_icon.webp"),
   },
   {
-    name: "心境與筆記",
-    icon: "心",
-    href: "/thoughts",
-    accent: "74, 124, 140",
-    iconImage: getAssetUrl("/images/icons/thoughts_icon.webp"),
-  },
-  {
     name: "健康知識",
     icon: "健",
     href: "/health",

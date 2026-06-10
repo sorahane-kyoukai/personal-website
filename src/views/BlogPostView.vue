@@ -71,7 +71,7 @@ if (!post.value) {
           <!-- Back -->
           <router-link to="/blog" class="back-link">
             <span class="back-arrow">←</span>
-            <span>返回星塵書庫</span>
+            <span>返回星塵筆記</span>
           </router-link>
 
           <!-- Category + Date row -->

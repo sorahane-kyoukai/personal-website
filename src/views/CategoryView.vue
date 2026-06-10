@@ -181,7 +181,7 @@ const bgImage = computed(() => currentTheme.value.backgroundImage || "");
   font-size: clamp(40px, 7vw, 64px); /* Larger title */
 }
 
-/* Zen (Thoughts) */
+/* Zen layout (unused — available for future themes) */
 .layout-zen .category-header {
   text-align: center;
   margin-bottom: 100px;

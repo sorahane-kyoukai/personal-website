@@ -30,9 +30,9 @@ const activeLabel = computed(() => {
         <div class="hero-top">
           <h1 class="hero-title">
             <span class="title-icon">◈</span>
-            星塵書庫
+            星塵筆記
           </h1>
-          <span class="hero-sub">Stardust Archive</span>
+          <span class="hero-sub">Stardust Notes</span>
         </div>
         <p class="hero-desc">
           技術探索、社群思考、學習筆記。每一篇文章，都是夜空中的一顆星。
