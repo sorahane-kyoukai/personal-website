@@ -1,0 +1,366 @@
+/* Google Fonts - must be first */
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;600&display=swap");
+
+@import "tailwindcss";
+
+/* Celestial Theme Configuration */
+@theme {
+  /* Night Colors */
+  --color-night-void: #0a0e1a;
+  --color-night-deep: #0f172a;
+  --color-night-blue: #1e3a5f;
+  --color-cosmic-purple: #312e81;
+  --color-cosmic-purple-light: #4338ca;
+
+  /* Light & Celestial */
+  --color-star-white: #f8fafc;
+  --color-moon-silver: #e2e8f0;
+  --color-teal-cloud: #4a7c8c;
+  --color-nebula-pink: #ec4899;
+
+  /* Day Colors */
+  --color-sun-gold: #f5c542;
+  --color-amber-glow: #d97706;
+  --color-dawn-orange: #fb923c;
+  --color-sky-blue: #87ceeb;
+  --color-horizon-cream: #fef3c7;
+
+  /* Typography */
+  --font-display-jp: "Shippori Mincho", serif;
+  --font-display-en: "Cormorant Garamond", serif;
+  --font-body: "Noto Sans JP", sans-serif;
+
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-twinkle: twinkle 2s ease-in-out infinite;
+  --animate-orbit: orbit 60s linear infinite;
+  --animate-orbit-reverse: orbit 60s linear infinite reverse;
+  --animate-breath: breath 4s ease-in-out infinite;
+  --animate-slide-up: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+  --animate-scale-in: scale-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-typewriter: typewriter 3s steps(40, end) forwards;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-scroll-hint: scroll-hint 2s ease-in-out infinite;
+  --animate-ripple: ripple 0.6s ease-out forwards;
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
+
+  /* Keyframes */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 20px rgba(245, 197, 66, 0.4));
+      opacity: 1;
+    }
+    50% {
+      filter: drop-shadow(0 0 40px rgba(245, 197, 66, 0.8));
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(var(--orbit-radius, 180px))
+        rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(var(--orbit-radius, 180px))
+        rotate(-360deg);
+    }
+  }
+
+  @keyframes breath {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scroll-hint {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(12px);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      box-shadow:
+        0 0 20px rgba(245, 197, 66, 0.3),
+        0 0 40px rgba(245, 197, 66, 0.2),
+        0 0 60px rgba(245, 197, 66, 0.1);
+    }
+    50% {
+      box-shadow:
+        0 0 30px rgba(245, 197, 66, 0.5),
+        0 0 60px rgba(245, 197, 66, 0.3),
+        0 0 90px rgba(245, 197, 66, 0.2);
+    }
+  }
+
+  /* Custom easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global layout tokens */
+:root {
+  --header-height: 118px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: 98px;
+  }
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-night-deep);
+  color: var(--color-star-white);
+  overflow-x: hidden;
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(245, 197, 66, 0.3);
+  color: var(--color-star-white);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-night-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--color-cosmic-purple) 0%,
+    var(--color-night-blue) 100%
+  );
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--color-cosmic-purple-light) 0%,
+    var(--color-teal-cloud) 100%
+  );
+}
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Text glow effects */
+.text-glow {
+  text-shadow:
+    0 0 10px rgba(248, 250, 252, 0.5),
+    0 0 20px rgba(248, 250, 252, 0.3),
+    0 0 40px rgba(248, 250, 252, 0.2);
+}
+
+.text-glow-gold {
+  text-shadow:
+    0 0 10px rgba(245, 197, 66, 0.6),
+    0 0 20px rgba(245, 197, 66, 0.4),
+    0 0 40px rgba(245, 197, 66, 0.3),
+    0 0 80px rgba(245, 197, 66, 0.2);
+}
+
+/* Gradient text */
+.gradient-text-celestial {
+  background: linear-gradient(
+    135deg,
+    var(--color-moon-silver) 0%,
+    var(--color-star-white) 50%,
+    var(--color-sun-gold) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Star particle base */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--color-star-white);
+  border-radius: 50%;
+  animation: twinkle var(--twinkle-duration, 2s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition:
+    transform 0.3s var(--ease-out-back),
+    box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-sun-gold);
+  outline-offset: 2px;
+}
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-sun-gold),
+    var(--color-amber-glow)
+  );
+  transition: width 0.3s var(--ease-out-expo);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Button ripple container */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-container .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: ripple 0.6s ease-out forwards;
+  pointer-events: none;
+}
